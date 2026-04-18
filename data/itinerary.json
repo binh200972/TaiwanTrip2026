@@ -287,13 +287,13 @@
         "query": "Taipei Zoo"
       },
       {
+        "movingTime": "35-45 min to Taipei Main Station before departure",
         "id": "d8-2",
         "time": "18:34 - 20:49",
         "type": "transport",
         "title": "Nhu travels from Taipei ➔ Hualien",
         "desc": "Nhu takes train to Hualien. Thu picks up at station. Travel note: Taipei Zoo / city area -> Taipei Main Station usually takes around 35-45 min by MRT, so leave buffer before departure.",
-        "movingTime": "35-45 min to Taipei Main Station before departure",
-        "costTWD": 583,
+        "costTWD": "",
         "query": "Hualien Station"
       }
     ]
