@@ -33,15 +33,17 @@ Open `http://localhost:4000`.
 
 1. Push this project to GitHub.
 2. Go to [Render](https://render.com) and create account (free).
-3. New -> **Web Service** -> connect GitHub repo.
-4. Configure:
-   - Build Command: `npm install && npm run build`
-   - Start Command: `npm start`
-   - Runtime: Node
-5. Deploy.
+3. New -> **Blueprint** -> connect GitHub repo.
+4. Render will read `render.yaml` automatically.
+5. Click **Apply** to deploy.
 
 You will get a free URL like:
 `https://your-app-name.onrender.com`
+
+If you do not use Blueprint:
+- New -> **Web Service**
+- Build Command: `npm install && npm run build`
+- Start Command: `npm start`
 
 ### Important note for free hosting
 

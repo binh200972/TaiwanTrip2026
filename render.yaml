@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: taiwantrip2026
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
