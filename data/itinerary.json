@@ -1,59 +1,37 @@
 [
   {
-    "date": "12/06/2026",
-    "dayOfWeek": "Friday",
-    "location": "Taoyuan",
-    "events": [
-      {
-        "id": "d1-1",
-        "time": "13:30",
-        "type": "transport",
-        "title": "Nhu arrives at Taoyuan Airport",
-        "desc": "Take the Airport MRT from the airport to the hotel in Zhongli.",
-        "costTWD": 0,
-        "query": "Taoyuan International Airport"
-      },
-      {
-        "id": "d1-2",
-        "time": "Afternoon",
-        "type": "hotel",
-        "title": "Check-in at Elimhotel (Zhongli)",
-        "desc": "Address: 5F, No. 117, Section 2, Zhongmei Rd, Zhongli District, Taoyuan. Booked, unpaid (Total 797, Thu 398.50).",
-        "costTWD": 797,
-        "query": "Elimhotel Zhongli Taoyuan"
-      },
-      {
-        "id": "d1-3",
-        "time": "Evening",
-        "type": "food",
-        "title": "Dinner at Zhongli Night Market",
-        "desc": "Free time to explore and have dinner at the night market.",
-        "costTWD": 0,
-        "query": "Zhongli Night Market"
-      }
-    ]
-  },
-  {
     "date": "13/06/2026",
     "dayOfWeek": "Saturday",
     "location": "Taoyuan ➔ Taichung",
     "events": [
       {
         "id": "d2-1",
-        "time": "Morning",
+        "time": "11:00",
         "type": "hotel",
-        "title": "Check-out of hotel in Zhongli",
-        "desc": "Prepare to travel to Taichung.",
+        "title": "Nhu Check-out of hotel in Zhongli",
+        "desc": "Prepare to travel to Taichung. Note: if waiting for Alan, ask hotel to keep luggage after check-out. Possible extra fee (late check-out / luggage service): ~50-200 TWD. Travel note: hotel -> Zhongli Station area is usually about 10-15 min by taxi / 15-25 min on foot depending on luggage.",
+        "movingTime": "10-25 min from hotel to Zhongli Station area",
         "costTWD": 0,
         "query": "Zhongli Taoyuan"
       },
       {
+        "id": "ev-1776499118791",
+        "time": "11:45",
+        "title": "Alan landed - Head to Zhongli",
+        "desc": "Airport transfer to Zhongli. Estimated travel time from Taoyuan Airport to Zhongli: about 35-50 min depending on Airport MRT / taxi combination.",
+        "movingTime": "35-50 min from Taoyuan Airport to Zhongli",
+        "costTWD": "180",
+        "type": "transport",
+        "query": "Taoyuan Airport – TPE"
+      },
+      {
         "id": "d2-2",
-        "time": "Noon",
-        "type": "info",
+        "time": "14:45",
+        "type": "map",
         "title": "Pick up Alan & Lunch",
-        "desc": "Pick up Alan at MRT Taoyuan Zhongli Station. Free time for lunch.",
-        "costTWD": 0,
+        "desc": "Pick up Alan at MRT Taoyuan Zhongli Station. Lunch estimate: ~120-250 TWD/person (plus drinks/snacks ~30-80 TWD). Travel note: Zhongli Station lunch spot -> TRA Zhongli Station is about 10-15 min by taxi or 15-20 min on foot.",
+        "movingTime": "10-20 min from lunch area to TRA Zhongli Station",
+        "costTWD": 220,
         "query": "MRT Taoyuan Zhongli Station"
       },
       {
@@ -61,27 +39,20 @@
         "time": "Afternoon",
         "type": "transport",
         "title": "Head to Train Station & Travel to Taichung",
-        "desc": "Take an Uber (~100 TWD) to TRA Zhongli station. Take a train from Zhongli to Taichung.",
-        "costTWD": 490,
+        "desc": "Take an Uber (~100 TWD) to TRA Zhongli station. Take a train from Zhongli to Taichung. Estimated travel time: 10-15 min to station + around 1 hr 40 min to 2 hr 10 min by TRA depending on train type, then another 10-15 min from Taichung Station to Fooyee hotel. Potential extra costs: Uber surge (~120-180 TWD), train type upgrade, and light food/water at station.",
+        "movingTime": "10-15 min + 1h40-2h10 + 10-15 min (to station, train, to hotel)",
+        "costTWD": "390",
         "query": "TRA Zhongli Station"
-      },
-      {
-        "id": "d2-4",
-        "time": "12:55 - 18:18",
-        "type": "transport",
-        "title": "Cuong travels from Hualien ➔ Taichung",
-        "desc": "Cuong takes a train from Hualien to Taichung.",
-        "costTWD": 0,
-        "query": "Taichung Station"
       },
       {
         "id": "d2-5",
         "time": "Evening",
         "type": "hotel",
-        "title": "Check-in Hotel in Taichung",
-        "desc": "Palmer hotel (Total 3555, Cuong pays 1777.5). Nhu & Alan stay at Fooyee hotel.",
-        "costTWD": 3555,
-        "query": "Palmer hotel Taichung"
+        "title": "Check-in Hotel in Taichung - 3 nights",
+        "desc": "Fooyee hotel (4940/2). Travel note: Taichung Station -> hotel is usually around 10-15 min by taxi or 15-20 min on foot with luggage.",
+        "movingTime": "10-20 min from Taichung Station to hotel",
+        "costTWD": "2470",
+        "query": "Fooyee hotel Taichung"
       }
     ]
   },
@@ -95,26 +66,29 @@
         "time": "Morning",
         "type": "camera",
         "title": "Rainbow Village",
-        "desc": "Visit the famous painted village. (Free entry)",
-        "costTWD": 0,
+        "desc": "Visit the painted village (free entry). From Fooyee hotel / Taichung Station area, travel time is about 25-35 min by car or 40-55 min by bus. Transport note: budget local bus/Uber split around 60-120 TWD/person.",
+        "movingTime": "25-55 min from Taichung Station / Fooyee area",
+        "costTWD": 100,
         "query": "Rainbow Village Taichung"
       },
       {
         "id": "d3-2",
         "time": "Noon",
         "type": "camera",
-        "title": "Museum of Fine Arts & Comics",
-        "desc": "National Taiwan Museum of Fine Arts (Free) and Comics.",
-        "costTWD": 0,
-        "query": "National Taiwan Museum of Fine Arts"
+        "title": "National Taiwan Museum of Comics",
+        "desc": "Free entry. Travel note: Rainbow Village -> Museum of Comics is about 20-30 min by car or 35-50 min by bus. Add transport + drink break budget around 30-80 TWD/person.",
+        "movingTime": "20-50 min from Rainbow Village",
+        "costTWD": 50,
+        "query": "National Taiwan Museum of Comics Taichung"
       },
       {
         "id": "d3-3",
         "time": "Early Afternoon",
         "type": "camera",
         "title": "National Museum of Natural Science",
-        "desc": "Student ticket 90 NTD.",
-        "costTWD": 90,
+        "desc": "Student ticket 90 NTD. Traveler/adult galleries ticket 120 NTD. Travel note: Museum of Comics -> Natural Science Museum is about 10-15 min by car or 20-25 min by bus.",
+        "movingTime": "10-25 min from Museum of Comics",
+        "costTWD": 120,
         "query": "National Museum of Natural Science Taichung"
       },
       {
@@ -122,8 +96,9 @@
         "time": "Sunset",
         "type": "sun",
         "title": "Sunset viewing at Gaomei Wetland",
-        "desc": "The best place for sunset viewing in Taichung.",
-        "costTWD": 0,
+        "desc": "Best sunset spot in Taichung. Travel note: Natural Science Museum area -> Gaomei Wetland is usually 50-70 min by car or 80-100 min by public transport. Transport note: round-trip bus/train or taxi split often 150-300 TWD/person depending on departure point/time.",
+        "movingTime": "50-100 min from Taichung city center",
+        "costTWD": 220,
         "query": "Gaomei Wetland"
       },
       {
@@ -131,8 +106,9 @@
         "time": "Evening",
         "type": "shopping",
         "title": "Mitsui Outlet Park Taichung",
-        "desc": "Shopping, dining, and relaxing in the evening.",
-        "costTWD": 0,
+        "desc": "Shopping, dinner, and relaxing in the evening. Travel note: Gaomei Wetland -> Mitsui Outlet Park is about 20-30 min by car. Suggested food + small shopping buffer: 250-500 TWD/person.",
+        "movingTime": "20-30 min from Gaomei Wetland",
+        "costTWD": 350,
         "query": "Mitsui Outlet Park Taichung"
       }
     ]
@@ -147,8 +123,9 @@
         "time": "Morning - Afternoon",
         "type": "camera",
         "title": "Explore Sun Moon Lake",
-        "desc": "Rent motorbikes to ride around the lake.",
-        "costTWD": 0,
+        "desc": "Rent 2 motorbikes to ride around the lake. Estimated rental: 500 TWD/bike/day (2 bikes = 1000 TWD). Add fuel/parking and local transfer to Sun Moon Lake. Travel note: Taichung city -> Sun Moon Lake is about 1 hr 30 min to 2 hr one way depending on bus/car. Practical budget: around 450 TWD/person when split by 4.",
+        "movingTime": "1h30-2h one way from Taichung to Sun Moon Lake",
+        "costTWD": 450,
         "query": "Sun Moon Lake"
       },
       {
@@ -156,8 +133,9 @@
         "time": "Evening",
         "type": "food",
         "title": "Fengchia Night Market",
-        "desc": "Explore Taiwan's largest night market.",
-        "costTWD": 0,
+        "desc": "Explore Taiwan's largest night market. Travel note: Sun Moon Lake -> Fengchia area can take around 1 hr 30 min to 2 hr back to Taichung, depending on return timing. Suggested dinner/snacks budget: 200-350 TWD/person.",
+        "movingTime": "1h30-2h from Sun Moon Lake back to Fengchia area",
+        "costTWD": 280,
         "query": "Feng Chia Night Market"
       }
     ]
@@ -165,32 +143,25 @@
   {
     "date": "16/06/2026",
     "dayOfWeek": "Tuesday",
-    "location": "Taichung ➔ Hualien / Taipei",
+    "location": "Taichung ➔ Taipei",
     "events": [
       {
         "id": "d5-1",
         "time": "Morning",
         "type": "camera",
         "title": "Xinshe Castle & Confucius Temple",
-        "desc": "Visit Xinshe Castle and Taichung Confucius Temple (Free).",
-        "costTWD": 0,
+        "desc": "Visit Xinshe Castle and Taichung Confucius Temple. Confucius Temple is free; Xinshe area and transport can add costs. Travel note: Fooyee hotel / Taichung Station area -> Xinshe is about 40-60 min, then Xinshe -> Confucius Temple area about 25-35 min by car. Suggested budget: 200-300 TWD/person.",
+        "movingTime": "40-60 min to Xinshe, then 25-35 min to Confucius Temple",
+        "costTWD": 250,
         "query": "Xinshe Castle Taichung"
-      },
-      {
-        "id": "d5-2",
-        "time": "15:56 - 19:59",
-        "type": "transport",
-        "title": "Team heading to Hualien",
-        "desc": "Puyuma Train 282 from Taichung to Hualien Station.",
-        "costTWD": 966,
-        "query": "Hualien Station"
       },
       {
         "id": "d5-3",
         "time": "Afternoon",
         "type": "transport",
-        "title": "Team heading to Taipei",
-        "desc": "TRA Train from Taichung to Taipei.",
+        "title": "Heading to Taipei",
+        "desc": "TRA Train from Taichung to Taipei. Estimated travel time: 10-20 min from sightseeing area back to station + around 2 hr to Taipei Main Station, then another 10-20 min local transfer to hotel. Add station transfer/metro/snacks buffer around 50-100 TWD/person.",
+        "movingTime": "10-20 min + ~2h train + 10-20 min (to station, train, to hotel)",
         "costTWD": 501,
         "query": "Taipei Main Station"
       },
@@ -199,8 +170,9 @@
         "time": "Evening",
         "type": "food",
         "title": "Taipei Team Evening Itinerary",
-        "desc": "Check in at the hotel in Taipei, rest. Food tour at Yongkang St.",
-        "costTWD": 0,
+        "desc": "Check in hotel at Taipei + short rest -> Yongkang St food tour + Zhongshan shopping walk. Using Taipei Main Station as base: Taipei Main -> Yongkang Street is around 15-20 min by MRT, then Yongkang -> Zhongshan about 10-15 min. Dinner + drinks + MRT budget: 250-400 TWD/person.",
+        "movingTime": "15-20 min (Taipei Main -> Yongkang), then 10-15 min (Yongkang -> Zhongshan)",
+        "costTWD": 320,
         "query": "Yongkang Street Taipei"
       }
     ]
@@ -215,8 +187,9 @@
         "time": "Morning",
         "type": "camera",
         "title": "Shifen Old Street & Waterfall",
-        "desc": "Release sky lanterns at Shifen Old Street.",
-        "costTWD": 0,
+        "desc": "Release sky lanterns at Shifen Old Street and visit waterfall. Using Taipei Main Station as base: travel time is about 70-90 min by TRA + local line. Sky lantern + transport estimate: around 180-300 TWD/person.",
+        "movingTime": "70-90 min from Taipei Main Station",
+        "costTWD": 220,
         "query": "Shifen Waterfall"
       },
       {
@@ -224,8 +197,9 @@
         "time": "Noon",
         "type": "camera",
         "title": "Houtong Cat Village",
-        "desc": "Visit Houtong Cat Village.",
-        "costTWD": 0,
+        "desc": "Visit Houtong Cat Village. Travel note: Shifen -> Houtong is usually around 40-50 min by train/transfer. Site is mostly free; reserve 40-80 TWD/person for local train and drinks.",
+        "movingTime": "40-50 min from Shifen",
+        "costTWD": 60,
         "query": "Houtong Cat Village"
       },
       {
@@ -233,8 +207,9 @@
         "time": "Afternoon",
         "type": "camera",
         "title": "Jiufen Old Street",
-        "desc": "Stroll around Jiufen Old Street.",
-        "costTWD": 0,
+        "desc": "Stroll around Jiufen Old Street. Travel note: Houtong -> Jiufen is about 35-50 min depending on train + bus/taxi connection. Plan budget for bus/train transfer + tea/snacks: 150-250 TWD/person.",
+        "movingTime": "35-50 min from Houtong",
+        "costTWD": 180,
         "query": "Jiufen Old Street"
       },
       {
@@ -242,8 +217,9 @@
         "time": "Evening",
         "type": "food",
         "title": "Raohe Night Market",
-        "desc": "Dinner at Raohe Night Market.",
-        "costTWD": 0,
+        "desc": "Dinner at Raohe Night Market. Travel note: Jiufen -> Raohe Night Market is roughly 45-60 min by bus/train. Typical meal + snacks budget: 200-320 TWD/person.",
+        "movingTime": "45-60 min from Jiufen",
+        "costTWD": 250,
         "query": "Raohe Night Market"
       }
     ]
@@ -257,19 +233,31 @@
         "id": "d7-1",
         "time": "Option 1",
         "type": "map",
-        "title": "Explore Yilan",
-        "desc": "Taipingshan National Forest and Luodong Night Market.",
-        "costTWD": 0,
+        "title": "Taipingshan + Luodong Night Market",
+        "desc": "Full-day Yilan plan: Taipei Main Station -> Luodong / Yilan transfer -> Taipingshan National Forest Recreation Area -> Luodong Night Market -> back to Taipei. Travel time is long: Taipei Main -> Luodong about 70-90 min, then Luodong -> Taipingshan about 90-120 min one way. Estimated per person: transport 300-450 TWD + park/activities 150-200 TWD + food 250-350 TWD.",
+        "movingTime": "Taipei Main -> Luodong 70-90 min; Luodong -> Taipingshan 90-120 min (one way)",
+        "costTWD": 850,
         "query": "Taipingshan National Forest"
       },
       {
         "id": "d7-2",
         "time": "Option 2",
         "type": "map",
-        "title": "Nature & History",
-        "desc": "Yangmingshan National Park and National Taiwan Museum.",
-        "costTWD": 15,
+        "title": "Yangmingshan National Park",
+        "desc": "City-nature day in Taipei: hiking/scenic spots in Yangmingshan, then dinner back in city. Using Taipei Main Station as base, travel time is usually around 50-70 min by MRT + bus. Main spots are mostly free. Estimated per person: transport 60-120 TWD + snacks/food 200-350 TWD.",
+        "movingTime": "50-70 min from Taipei Main Station",
+        "costTWD": 350,
         "query": "Yangmingshan National Park"
+      },
+      {
+        "id": "d7-3",
+        "time": "Option 3",
+        "type": "map",
+        "title": "Museum + Taipei 101 + Temples + Astronomy + Shilin",
+        "desc": "National Taiwan Museum + Taipei 101 + Longshan Temple + Wenchang Temple + Taipei Astronomical Museum + Shilin Night Market. Using Taipei Main Station as base: Taipei Main -> National Taiwan Museum 5-10 min, -> Taipei 101 about 15-20 min, -> Longshan Temple about 15-20 min, -> Wenchang Temple / Astronomical Museum area about 20-30 min, then -> Shilin Night Market about 10-15 min. Notes: Longshan/Wenchang are free. Estimated per person: Taipei 101 observatory ~600 TWD (optional), museum/astronomy tickets ~70-120 TWD total, transport ~80-150 TWD, food/night market ~250-350 TWD.",
+        "movingTime": "Most transfers are 10-30 min from Taipei Main Station baseline",
+        "costTWD": 1100,
+        "query": "National Taiwan Museum Taipei 101 Longshan Temple Wenchang Temple Taipei Astronomical Museum Shilin Night Market"
       }
     ]
   },
@@ -279,12 +267,23 @@
     "location": "Taipei ➔ Hualien",
     "events": [
       {
+        "id": "ev-1776500956340",
+        "time": "Morning",
+        "title": "Hotel Checkout",
+        "desc": "Check out from Taipei hotel. Travel note: if luggage is left at hotel, allow 10-20 min to return and collect before heading to Taipei Main Station / Zoo.",
+        "movingTime": "10-20 min buffer for luggage return/collection",
+        "costTWD": 0,
+        "type": "hotel",
+        "query": ""
+      },
+      {
+        "movingTime": "35-45 min from Taipei Main Station by MRT",
         "id": "d8-1",
         "time": "Morning",
         "type": "camera",
         "title": "Taipei Zoo",
-        "desc": "Explore the largest zoo in Asia.",
-        "costTWD": 92,
+        "desc": "Explore Taipei Zoo. Entry ticket: 92 NTD. Estimated MRT round-trip from Taipei city center: 40-60 NTD/person. Estimated snack/water budget: 80-150 NTD/person.",
+        "costTWD": "300",
         "query": "Taipei Zoo"
       },
       {
@@ -292,7 +291,8 @@
         "time": "18:34 - 20:49",
         "type": "transport",
         "title": "Nhu travels from Taipei ➔ Hualien",
-        "desc": "Nhu takes a train to Hualien. (Thu picks up Nhu).",
+        "desc": "Nhu takes train to Hualien. Thu picks up at station. Travel note: Taipei Zoo / city area -> Taipei Main Station usually takes around 35-45 min by MRT, so leave buffer before departure.",
+        "movingTime": "35-45 min to Taipei Main Station before departure",
         "costTWD": 583,
         "query": "Hualien Station"
       }
