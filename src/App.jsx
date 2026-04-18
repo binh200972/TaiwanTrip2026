@@ -17,6 +17,7 @@ import {
   Plus,
   GripVertical,
   Edit2,
+  Save,
   Trash2,
   X,
   CheckCircle2
@@ -129,7 +130,6 @@ export default function App() {
   const [toastState, setToastState] = useState({ message: "", undoAction: null });
   const [loading, setLoading] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [isQuickJumpVisible, setIsQuickJumpVisible] = useState(true);
   const [activeViewedDayIdx, setActiveViewedDayIdx] = useState(0);
   const toastTimerRef = useRef(null);
 
@@ -312,7 +312,7 @@ export default function App() {
     const day = itineraryData[dayIdx];
     if (!day) return;
 
-    requestConfirm(`Delete ${day.dayOfWeek} (${day.date}) and all events in this day?`, () => {
+    requestConfirm(`Delete Day ${dayIdx + 1} (${day.date}) and all events in this day?`, () => {
       const deletedDay = itineraryData[dayIdx];
       const newData = itineraryData.filter((_item, idx) => idx !== dayIdx);
       void persistItineraryData(newData);
@@ -358,9 +358,6 @@ export default function App() {
     void persistItineraryData(newData, "New day added!");
     setIsDayModalOpen(false);
     setActiveViewedDayIdx(newDayIdx);
-    setTimeout(() => {
-      scrollToDay(newDayIdx);
-    }, 120);
   };
 
   const handleEventDragStart = (fromDayIdx, eventId) => {
@@ -450,10 +447,6 @@ export default function App() {
 
   const scrollToDay = (dayIdx) => {
     setActiveViewedDayIdx(dayIdx);
-    const section = document.getElementById(`day-${dayIdx}`);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   useEffect(() => {
@@ -465,39 +458,6 @@ export default function App() {
     if (activeViewedDayIdx > itineraryData.length - 1) {
       setActiveViewedDayIdx(itineraryData.length - 1);
     }
-
-    const sections = itineraryData
-      .map((_, idx) => document.getElementById(`day-${idx}`))
-      .filter(Boolean);
-
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (!visibleEntries.length) return;
-
-        const topEntry = visibleEntries[0];
-        const targetIdx = Number(topEntry.target.getAttribute("data-day-idx"));
-        if (!Number.isNaN(targetIdx)) {
-          setActiveViewedDayIdx(targetIdx);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-130px 0px -50% 0px",
-        threshold: [0.2, 0.5, 0.8]
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      observer.disconnect();
-    };
   }, [itineraryData, activeViewedDayIdx]);
 
   const totalTWD = useMemo(() => {
@@ -505,6 +465,14 @@ export default function App() {
       return acc + day.events.reduce((sum, ev) => sum + (Number(ev.costTWD) || 0), 0);
     }, 0);
   }, [itineraryData]);
+  const dayTotals = useMemo(() => {
+    return itineraryData.map((day) =>
+      day.events.reduce((sum, ev) => sum + (Number(ev.costTWD) || 0), 0)
+    );
+  }, [itineraryData]);
+  const activeDay = itineraryData[activeViewedDayIdx];
+  const activeDayTotalTWD = dayTotals[activeViewedDayIdx] || 0;
+  const activeDayTotalAUD = (activeDayTotalTWD / exchangeRate).toFixed(2);
 
   const totalAUD = (totalTWD / exchangeRate).toFixed(2);
   const formatAUD = (twd) => (twd / exchangeRate).toFixed(2);
@@ -550,7 +518,7 @@ export default function App() {
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <div className="bg-blue-50 border border-blue-100 p-2.5 rounded-xl">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-xs font-semibold text-blue-800 uppercase tracking-wider">Exchange Rate TWD/AUD</span>
+                  <span className="text-xs font-semibold text-blue-800 uppercase tracking-wider">TWD/AUD</span>
                   <div className="flex items-center text-sm font-medium bg-white px-2 py-1 rounded border border-blue-200">
                     <span>1 AUD = </span>
                     <input
@@ -563,6 +531,16 @@ export default function App() {
                     <span>TWD</span>
                   </div>
                 </div>
+                <div className="mt-2">
+                  <div className="text-sm font-semibold text-blue-900">Day {activeViewedDayIdx + 1} Budget</div>
+                  <div className="text-lg font-black text-emerald-600 leading-tight">
+                    {activeDayTotalTWD.toLocaleString()} TWD
+                    <span className="text-base font-bold text-slate-500 ml-1">≈ {activeDayTotalAUD} AUD</span>
+                  </div>
+                </div>
+                <div className="mt-1 text-xs text-blue-700 font-medium">
+                  Trip total: {totalTWD.toLocaleString()} TWD (≈ {totalAUD} AUD)
+                </div>
               </div>
 
               <button
@@ -571,22 +549,24 @@ export default function App() {
                   setIsEditMode(nextMode);
                   showToast(nextMode ? "Edit mode enabled." : "Edit mode disabled.");
                 }}
-                className={`px-4 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors shadow-sm ${
+                className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors shadow-sm ${
                   isEditMode
                     ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
                     : "bg-slate-800 text-white hover:bg-slate-700"
                 }`}
+                title={isEditMode ? "Editing ON (tap to turn off)" : "Edit Mode"}
+                aria-label={isEditMode ? "Editing ON (tap to turn off)" : "Edit Mode"}
               >
-                <Edit2 className="w-5 h-5" />
-                {isEditMode ? "Editing ON" : "Edit Mode"}
+                {isEditMode ? <Save className="w-4 h-4" /> : <Edit2 className="w-4 h-4" />}
               </button>
               {isEditMode && (
                 <button
                   onClick={openAddDayModal}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors shadow-sm"
+                  className="w-9 h-9 rounded-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-colors shadow-sm"
+                  title="Add Day"
+                  aria-label="Add Day"
                 >
-                  <Plus className="w-5 h-5" />
-                  Add Day
+                  <Plus className="w-4 h-4" />
                 </button>
               )}
             </div>
@@ -599,7 +579,7 @@ export default function App() {
                 activeMainTab === "planning" ? "bg-white text-blue-700 shadow-sm" : "text-slate-600 hover:text-slate-800"
               }`}
             >
-              Planning Trip
+              Trip Planning
             </button>
             <button
               onClick={() => setActiveMainTab("food")}
@@ -615,130 +595,84 @@ export default function App() {
 
       {activeMainTab === "planning" && (
         <main className="max-w-6xl mx-auto px-4 mt-6 md:mt-8">
-          <div className="mb-3 flex justify-end">
-            <button
-              onClick={() => setIsQuickJumpVisible((prev) => !prev)}
-              className="px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50 transition-colors"
-            >
-              {isQuickJumpVisible ? "Hide Quick Jump" : "Show Quick Jump"}
-            </button>
-          </div>
-
-          {isQuickJumpVisible && (
-            <div className="mb-4 overflow-x-auto md:hidden">
-              <div className="flex gap-2 pb-2">
-                {itineraryData.map((day, dIdx) => (
-                  <button
-                    key={`mobile-jump-${day.date}-${dIdx}`}
-                    onClick={() => scrollToDay(dIdx)}
-                    className={`whitespace-nowrap px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
-                      activeViewedDayIdx === dIdx
-                        ? "border-blue-500 bg-blue-600 text-white shadow-sm"
-                        : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200"
-                    }`}
+          <div className="mb-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-white/95 backdrop-blur border border-slate-200 rounded-2xl px-3 py-3 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <label htmlFor="day-select" className="text-xs font-semibold text-slate-600 whitespace-nowrap">
+                    Select day:
+                  </label>
+                  <select
+                    id="day-select"
+                    value={activeViewedDayIdx}
+                    onChange={(e) => scrollToDay(Number(e.target.value))}
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 bg-white outline-none focus:border-blue-500"
                   >
-                    {day.dayOfWeek} - {day.date}
-                  </button>
-                ))}
+                    {itineraryData.map((day, dIdx) => (
+                      <option
+                        key={`day-option-${day.date}-${dIdx}`}
+                        value={dIdx}
+                      >
+                        {`Day ${dIdx + 1} - ${day.date}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
               </div>
             </div>
-          )}
+          </div>
 
-        <div className={`md:flex md:items-start ${isQuickJumpVisible ? "md:gap-6" : ""}`}>
-          {isQuickJumpVisible && (
-            <aside className="hidden md:block w-64 shrink-0 sticky top-[110px]">
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-                <h3 className="text-sm font-bold text-slate-800 mb-3">Quick Jump</h3>
-                <div className="space-y-2 max-h-[70vh] overflow-y-auto pr-1">
-                  {itineraryData.map((day, dIdx) => (
+          <div className="space-y-10">
+            {activeDay && (
+              <div className="relative group">
+                <div className="flex items-center gap-3 mb-4 py-2">
+                  <div className="bg-blue-600 text-white font-bold px-4 py-1.5 rounded-full text-sm md:text-base shadow-sm">
+                    Day {activeViewedDayIdx + 1}
+                  </div>
+                  <div className="font-semibold text-slate-700 text-sm md:text-base">{activeDay.date}</div>
+                  <div className="flex-1 h-px bg-slate-200 ml-2 hidden md:block"></div>
+                  <div className="font-bold text-slate-800 ml-auto bg-white px-3 py-1 rounded-lg border border-slate-200 text-sm flex items-center gap-1.5 shadow-sm">
+                    <MapPin className="w-4 h-4 text-rose-500" />
+                    {activeDay.location}
+                  </div>
+                  {isEditMode && (
                     <button
-                      key={`jump-${day.date}-${dIdx}`}
-                      onClick={() => scrollToDay(dIdx)}
-                      className={`w-full text-left px-3 py-2 rounded-lg border transition-colors ${
-                        activeViewedDayIdx === dIdx
-                          ? "border-blue-500 bg-blue-50 text-blue-800"
-                          : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700"
-                      }`}
+                      onClick={() => handleDeleteDay(activeViewedDayIdx)}
+                      className="p-1.5 rounded-md bg-slate-100 hover:bg-rose-100 text-rose-600 transition-colors"
+                      title="Delete this day"
                     >
-                      <div className="text-xs font-semibold">{day.dayOfWeek}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{day.date}</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5 truncate">{day.location}</div>
+                      <Trash2 className="w-4 h-4" />
                     </button>
-                  ))}
+                  )}
                 </div>
-              </div>
-            </aside>
-          )}
 
-          <section className="flex-1">
-        <div className="mb-8 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-          <div className="bg-emerald-100 text-emerald-600 p-3 rounded-full flex-shrink-0">
-            <DollarSign className="w-6 h-6" />
-          </div>
-          <div>
-            <h3 className="font-bold text-lg text-slate-800">Estimated Total Cost</h3>
-            <div className="flex items-end gap-3 mt-1">
-              <span className="text-2xl font-black text-emerald-600">{totalTWD.toLocaleString()} TWD</span>
-              <span className="text-lg font-medium text-slate-400 mb-0.5">≈ {totalAUD} AUD</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-10">
-          {itineraryData.map((day, dIdx) => (
-            <div
-              key={`${day.date}-${dIdx}`}
-              id={`day-${dIdx}`}
-              data-day-idx={dIdx}
-              className="relative group scroll-mt-[150px] md:scroll-mt-[120px]"
-            >
-              <div className="flex items-center gap-3 mb-4 sticky top-[130px] md:top-[100px] z-20 bg-slate-50/95 backdrop-blur py-2">
-                <div className="bg-blue-600 text-white font-bold px-4 py-1.5 rounded-full text-sm md:text-base shadow-sm">
-                  {day.dayOfWeek}
-                </div>
-                <div className="font-semibold text-slate-700 text-sm md:text-base">{day.date}</div>
-                <div className="flex-1 h-px bg-slate-200 ml-2 hidden md:block"></div>
-                <div className="font-bold text-slate-800 ml-auto bg-white px-3 py-1 rounded-lg border border-slate-200 text-sm flex items-center gap-1.5 shadow-sm">
-                  <MapPin className="w-4 h-4 text-rose-500" />
-                  {day.location}
-                </div>
-                {isEditMode && (
-                  <button
-                    onClick={() => handleDeleteDay(dIdx)}
-                    className="p-1.5 rounded-md bg-slate-100 hover:bg-rose-100 text-rose-600 transition-colors"
-                    title="Delete this day"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden ml-2 md:ml-6 relative">
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-100 z-0 hidden md:block"></div>
-                <div className="divide-y divide-slate-100">
-                  {day.events.map((event) => (
-                    <div
-                      key={event.id}
-                      draggable={isEditMode}
-                      onDragStart={() => handleEventDragStart(dIdx, event.id)}
-                      onDragEnd={handleEventDragEnd}
-                      onDragOver={(e) => handleDragOverTarget(e, dIdx, event.id)}
-                      onDrop={(e) => handleDropOnTarget(e, dIdx, event.id)}
-                      className={`p-4 md:p-6 relative z-10 flex flex-col md:flex-row gap-4 md:gap-6 hover:bg-slate-50 transition-colors group/event ${
-                        draggingEvent?.eventId === event.id ? "opacity-60" : ""
-                      } ${dropTarget === `${dIdx}:${event.id}` ? "ring-2 ring-blue-200 bg-blue-50/40" : ""}`}
-                    >
+                <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden relative">
+                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-100 z-0 hidden md:block"></div>
+                  <div className="divide-y divide-slate-100">
+                    {activeDay.events.map((event) => (
+                      <div
+                        key={event.id}
+                        draggable={isEditMode}
+                        onDragStart={() => handleEventDragStart(activeViewedDayIdx, event.id)}
+                        onDragEnd={handleEventDragEnd}
+                        onDragOver={(e) => handleDragOverTarget(e, activeViewedDayIdx, event.id)}
+                        onDrop={(e) => handleDropOnTarget(e, activeViewedDayIdx, event.id)}
+                        className={`p-4 md:p-6 relative z-10 flex flex-col md:flex-row gap-4 md:gap-6 hover:bg-slate-50 transition-colors group/event ${
+                          draggingEvent?.eventId === event.id ? "opacity-60" : ""
+                        } ${dropTarget === `${activeViewedDayIdx}:${event.id}` ? "ring-2 ring-blue-200 bg-blue-50/40" : ""}`}
+                      >
                       {isEditMode && (
                         <div className="absolute top-4 right-4 flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover/event:opacity-100 transition-opacity">
                           <button
-                            onClick={() => openEditModal(dIdx, event)}
+                            onClick={() => openEditModal(activeViewedDayIdx, event)}
                             className="p-1.5 bg-slate-100 hover:bg-blue-100 text-blue-600 rounded-md transition-colors"
                             title="Edit"
                           >
                             <Edit2 className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => handleDeleteEvent(dIdx, event.id)}
+                            onClick={() => handleDeleteEvent(activeViewedDayIdx, event.id)}
                             className="p-1.5 bg-slate-100 hover:bg-rose-100 text-rose-600 rounded-md transition-colors"
                             title="Delete"
                           >
@@ -810,32 +744,30 @@ export default function App() {
                           </div>
                         )}
                       </div>
-                    </div>
-                  ))}
+                      </div>
+                    ))}
 
-                  {isEditMode && (
-                    <div
-                      onDragOver={(e) => handleDragOverTarget(e, dIdx)}
-                      onDrop={(e) => handleDropOnTarget(e, dIdx)}
-                      className={`p-4 md:px-6 bg-slate-50/50 transition-colors ${
-                        dropTarget === `${dIdx}:end` ? "bg-blue-50" : ""
-                      }`}
-                    >
-                      <button
-                        onClick={() => openAddModal(dIdx)}
-                        className="w-full py-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-500 font-semibold flex items-center justify-center gap-2 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-colors"
+                    {isEditMode && (
+                      <div
+                        onDragOver={(e) => handleDragOverTarget(e, activeViewedDayIdx)}
+                        onDrop={(e) => handleDropOnTarget(e, activeViewedDayIdx)}
+                        className={`p-4 md:px-6 bg-slate-50/50 transition-colors ${
+                          dropTarget === `${activeViewedDayIdx}:end` ? "bg-blue-50" : ""
+                        }`}
                       >
-                        <Plus className="w-5 h-5" /> Add event to {day.dayOfWeek}
-                      </button>
-                    </div>
-                  )}
+                        <button
+                          onClick={() => openAddModal(activeViewedDayIdx)}
+                          className="w-full py-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-500 font-semibold flex items-center justify-center gap-2 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-colors"
+                        >
+                          <Plus className="w-5 h-5" /> Add event to Day {activeViewedDayIdx + 1}
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-          </section>
-        </div>
+            )}
+          </div>
         </main>
       )}
 
