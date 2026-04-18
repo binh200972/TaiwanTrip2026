@@ -1,0 +1,301 @@
+[
+  {
+    "date": "12/06/2026",
+    "dayOfWeek": "Friday",
+    "location": "Taoyuan",
+    "events": [
+      {
+        "id": "d1-1",
+        "time": "13:30",
+        "type": "transport",
+        "title": "Nhu arrives at Taoyuan Airport",
+        "desc": "Take the Airport MRT from the airport to the hotel in Zhongli.",
+        "costTWD": 0,
+        "query": "Taoyuan International Airport"
+      },
+      {
+        "id": "d1-2",
+        "time": "Afternoon",
+        "type": "hotel",
+        "title": "Check-in at Elimhotel (Zhongli)",
+        "desc": "Address: 5F, No. 117, Section 2, Zhongmei Rd, Zhongli District, Taoyuan. Booked, unpaid (Total 797, Thu 398.50).",
+        "costTWD": 797,
+        "query": "Elimhotel Zhongli Taoyuan"
+      },
+      {
+        "id": "d1-3",
+        "time": "Evening",
+        "type": "food",
+        "title": "Dinner at Zhongli Night Market",
+        "desc": "Free time to explore and have dinner at the night market.",
+        "costTWD": 0,
+        "query": "Zhongli Night Market"
+      }
+    ]
+  },
+  {
+    "date": "13/06/2026",
+    "dayOfWeek": "Saturday",
+    "location": "Taoyuan ➔ Taichung",
+    "events": [
+      {
+        "id": "d2-1",
+        "time": "Morning",
+        "type": "hotel",
+        "title": "Check-out of hotel in Zhongli",
+        "desc": "Prepare to travel to Taichung.",
+        "costTWD": 0,
+        "query": "Zhongli Taoyuan"
+      },
+      {
+        "id": "d2-2",
+        "time": "Noon",
+        "type": "info",
+        "title": "Pick up Alan & Lunch",
+        "desc": "Pick up Alan at MRT Taoyuan Zhongli Station. Free time for lunch.",
+        "costTWD": 0,
+        "query": "MRT Taoyuan Zhongli Station"
+      },
+      {
+        "id": "d2-3",
+        "time": "Afternoon",
+        "type": "transport",
+        "title": "Head to Train Station & Travel to Taichung",
+        "desc": "Take an Uber (~100 TWD) to TRA Zhongli station. Take a train from Zhongli to Taichung.",
+        "costTWD": 490,
+        "query": "TRA Zhongli Station"
+      },
+      {
+        "id": "d2-4",
+        "time": "12:55 - 18:18",
+        "type": "transport",
+        "title": "Cuong travels from Hualien ➔ Taichung",
+        "desc": "Cuong takes a train from Hualien to Taichung.",
+        "costTWD": 0,
+        "query": "Taichung Station"
+      },
+      {
+        "id": "d2-5",
+        "time": "Evening",
+        "type": "hotel",
+        "title": "Check-in Hotel in Taichung",
+        "desc": "Palmer hotel (Total 3555, Cuong pays 1777.5). Nhu & Alan stay at Fooyee hotel.",
+        "costTWD": 3555,
+        "query": "Palmer hotel Taichung"
+      }
+    ]
+  },
+  {
+    "date": "14/06/2026",
+    "dayOfWeek": "Sunday",
+    "location": "Taichung",
+    "events": [
+      {
+        "id": "d3-1",
+        "time": "Morning",
+        "type": "camera",
+        "title": "Rainbow Village",
+        "desc": "Visit the famous painted village. (Free entry)",
+        "costTWD": 0,
+        "query": "Rainbow Village Taichung"
+      },
+      {
+        "id": "d3-2",
+        "time": "Noon",
+        "type": "camera",
+        "title": "Museum of Fine Arts & Comics",
+        "desc": "National Taiwan Museum of Fine Arts (Free) and Comics.",
+        "costTWD": 0,
+        "query": "National Taiwan Museum of Fine Arts"
+      },
+      {
+        "id": "d3-3",
+        "time": "Early Afternoon",
+        "type": "camera",
+        "title": "National Museum of Natural Science",
+        "desc": "Student ticket 90 NTD.",
+        "costTWD": 90,
+        "query": "National Museum of Natural Science Taichung"
+      },
+      {
+        "id": "d3-4",
+        "time": "Sunset",
+        "type": "sun",
+        "title": "Sunset viewing at Gaomei Wetland",
+        "desc": "The best place for sunset viewing in Taichung.",
+        "costTWD": 0,
+        "query": "Gaomei Wetland"
+      },
+      {
+        "id": "d3-5",
+        "time": "Evening",
+        "type": "shopping",
+        "title": "Mitsui Outlet Park Taichung",
+        "desc": "Shopping, dining, and relaxing in the evening.",
+        "costTWD": 0,
+        "query": "Mitsui Outlet Park Taichung"
+      }
+    ]
+  },
+  {
+    "date": "15/06/2026",
+    "dayOfWeek": "Monday",
+    "location": "Taichung",
+    "events": [
+      {
+        "id": "d4-1",
+        "time": "Morning - Afternoon",
+        "type": "camera",
+        "title": "Explore Sun Moon Lake",
+        "desc": "Rent motorbikes to ride around the lake.",
+        "costTWD": 0,
+        "query": "Sun Moon Lake"
+      },
+      {
+        "id": "d4-2",
+        "time": "Evening",
+        "type": "food",
+        "title": "Fengchia Night Market",
+        "desc": "Explore Taiwan's largest night market.",
+        "costTWD": 0,
+        "query": "Feng Chia Night Market"
+      }
+    ]
+  },
+  {
+    "date": "16/06/2026",
+    "dayOfWeek": "Tuesday",
+    "location": "Taichung ➔ Hualien / Taipei",
+    "events": [
+      {
+        "id": "d5-1",
+        "time": "Morning",
+        "type": "camera",
+        "title": "Xinshe Castle & Confucius Temple",
+        "desc": "Visit Xinshe Castle and Taichung Confucius Temple (Free).",
+        "costTWD": 0,
+        "query": "Xinshe Castle Taichung"
+      },
+      {
+        "id": "d5-2",
+        "time": "15:56 - 19:59",
+        "type": "transport",
+        "title": "Team heading to Hualien",
+        "desc": "Puyuma Train 282 from Taichung to Hualien Station.",
+        "costTWD": 966,
+        "query": "Hualien Station"
+      },
+      {
+        "id": "d5-3",
+        "time": "Afternoon",
+        "type": "transport",
+        "title": "Team heading to Taipei",
+        "desc": "TRA Train from Taichung to Taipei.",
+        "costTWD": 501,
+        "query": "Taipei Main Station"
+      },
+      {
+        "id": "d5-4",
+        "time": "Evening",
+        "type": "food",
+        "title": "Taipei Team Evening Itinerary",
+        "desc": "Check in at the hotel in Taipei, rest. Food tour at Yongkang St.",
+        "costTWD": 0,
+        "query": "Yongkang Street Taipei"
+      }
+    ]
+  },
+  {
+    "date": "17/06/2026",
+    "dayOfWeek": "Wednesday",
+    "location": "Taipei & New Taipei",
+    "events": [
+      {
+        "id": "d6-1",
+        "time": "Morning",
+        "type": "camera",
+        "title": "Shifen Old Street & Waterfall",
+        "desc": "Release sky lanterns at Shifen Old Street.",
+        "costTWD": 0,
+        "query": "Shifen Waterfall"
+      },
+      {
+        "id": "d6-2",
+        "time": "Noon",
+        "type": "camera",
+        "title": "Houtong Cat Village",
+        "desc": "Visit Houtong Cat Village.",
+        "costTWD": 0,
+        "query": "Houtong Cat Village"
+      },
+      {
+        "id": "d6-3",
+        "time": "Afternoon",
+        "type": "camera",
+        "title": "Jiufen Old Street",
+        "desc": "Stroll around Jiufen Old Street.",
+        "costTWD": 0,
+        "query": "Jiufen Old Street"
+      },
+      {
+        "id": "d6-4",
+        "time": "Evening",
+        "type": "food",
+        "title": "Raohe Night Market",
+        "desc": "Dinner at Raohe Night Market.",
+        "costTWD": 0,
+        "query": "Raohe Night Market"
+      }
+    ]
+  },
+  {
+    "date": "18/06/2026",
+    "dayOfWeek": "Thursday",
+    "location": "Taipei / Yilan",
+    "events": [
+      {
+        "id": "d7-1",
+        "time": "Option 1",
+        "type": "map",
+        "title": "Explore Yilan",
+        "desc": "Taipingshan National Forest and Luodong Night Market.",
+        "costTWD": 0,
+        "query": "Taipingshan National Forest"
+      },
+      {
+        "id": "d7-2",
+        "time": "Option 2",
+        "type": "map",
+        "title": "Nature & History",
+        "desc": "Yangmingshan National Park and National Taiwan Museum.",
+        "costTWD": 15,
+        "query": "Yangmingshan National Park"
+      }
+    ]
+  },
+  {
+    "date": "19/06/2026",
+    "dayOfWeek": "Friday",
+    "location": "Taipei ➔ Hualien",
+    "events": [
+      {
+        "id": "d8-1",
+        "time": "Morning",
+        "type": "camera",
+        "title": "Taipei Zoo",
+        "desc": "Explore the largest zoo in Asia.",
+        "costTWD": 92,
+        "query": "Taipei Zoo"
+      },
+      {
+        "id": "d8-2",
+        "time": "18:34 - 20:49",
+        "type": "transport",
+        "title": "Nhu travels from Taipei ➔ Hualien",
+        "desc": "Nhu takes a train to Hualien. (Thu picks up Nhu).",
+        "costTWD": 583,
+        "query": "Hualien Station"
+      }
+    ]
+  }
+]
